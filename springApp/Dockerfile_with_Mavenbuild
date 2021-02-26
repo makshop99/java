@@ -1,0 +1,8 @@
+FROM maven:3.6.3-openjdk-15 AS MAVEN_BUILD
+CPOY pom.xml /build/
+COPY src /build/src
+RUN mvn clean package -DskipTests
+
+FROM openjdk:15
+COPY --from=MAVEN_BUILD /build/target/*.jar /app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]

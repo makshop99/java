@@ -1,0 +1,5 @@
+technical:
+  user:
+    username: ${username}
+    password: ${password}
+
